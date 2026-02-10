@@ -499,4 +499,136 @@
     const og = audioCtx.createGain();
     og.gain.setValueAtTime(0.0001, t0);
     og.gain.exponentialRampToValueAtTime(0.45, t0 + 0.01);
-    og.gain.exponent
+    og.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.14);
+
+    osc.connect(filt);
+    filt.connect(og);
+    og.connect(out);
+
+    osc.start(t0);
+    osc.stop(t0 + 0.15);
+  };
+
+  // Jingle-bell-ish: short metallic “ding” clusters
+  const playJingle = () => {
+    const t0 = now();
+    const out = ensureMaster();
+
+    const bell = (t, freq, dur, amp) => {
+      const o1 = audioCtx.createOscillator();
+      const o2 = audioCtx.createOscillator();
+      o1.type = 'sine';
+      o2.type = 'sine';
+
+      // Inharmonic partial
+      o1.frequency.setValueAtTime(freq, t);
+      o2.frequency.setValueAtTime(freq * 2.7, t);
+
+      const g = audioCtx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(amp, t + 0.005);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+
+      const hp = audioCtx.createBiquadFilter();
+      hp.type = 'highpass';
+      hp.frequency.setValueAtTime(350, t);
+
+      o1.connect(hp);
+      o2.connect(hp);
+      hp.connect(g);
+      g.connect(out);
+
+      o1.start(t);
+      o2.start(t);
+      o1.stop(t + dur + 0.02);
+      o2.stop(t + dur + 0.02);
+    };
+
+    // Little pattern — randomize a bit
+    const baseFreqs = [784, 659, 880, 988, 740];
+    const hits = Math.floor(rand(3, 6));
+    for (let i = 0; i < hits; i++) {
+      const dt = i * rand(0.07, 0.12);
+      const f = pick(baseFreqs) * (Math.random() < 0.25 ? 2 : 1);
+      bell(t0 + dt, f, rand(0.25, 0.45), rand(0.08, 0.15));
+    }
+  };
+
+  const playRandomSound = () => {
+    if (!soundEnabled) return;
+    if (!audioCtx || audioCtx.state !== 'running') return;
+
+    // Don’t play while confirmation modal is open
+    if (confirmModal?.classList?.contains('active')) return;
+
+    // Pick one
+    const pickOne = Math.random();
+    if (pickOne < 0.55) {
+      // sometimes a mini bark burst
+      const bursts = Math.random() < 0.35 ? 2 : 1;
+      playBark();
+      if (bursts === 2) setTimeout(() => playBark(), Math.floor(rand(120, 220)));
+    } else {
+      playJingle();
+    }
+  };
+
+  const scheduleNextSound = () => {
+    if (!soundEnabled) return;
+
+    // Wider spacing if user prefers reduced motion (less “busy” overall)
+    const minMs = prefersReduced ? 45000 : 25000;
+    const maxMs = prefersReduced ? 90000 : 70000;
+    const delay = Math.floor(rand(minMs, maxMs));
+
+    window.clearTimeout(soundTimer);
+    soundTimer = window.setTimeout(() => {
+      playRandomSound();
+      scheduleNextSound();
+    }, delay);
+  };
+
+  const startSounds = () => {
+    if (soundEnabled) return;
+    soundEnabled = true;
+    setSoundUi(true);
+    saveSoundPref(true);
+    scheduleNextSound();
+  };
+
+  const stopSounds = () => {
+    soundEnabled = false;
+    setSoundUi(false);
+    saveSoundPref(false);
+    window.clearTimeout(soundTimer);
+    soundTimer = null;
+  };
+
+  // Init UI from preference, but DO NOT start audio until user gesture
+  const prefOn = loadSoundPref();
+  setSoundUi(false);
+
+  soundToggle?.addEventListener('click', async () => {
+    if (!soundEnabled) {
+      try {
+        await ensureAudio(); // user gesture = allowed
+        ensureMaster();
+        startSounds();
+        // Play a tiny "enable" ping so user knows it's on
+        playJingle();
+      } catch {
+        // If audio is blocked for any reason, stay off.
+        stopSounds();
+      }
+    } else {
+      stopSounds();
+    }
+  });
+
+  // If they had pref ON previously, we can prime UI with a hint:
+  if (prefOn) {
+    // show as Off but suggest it was previously enabled by flipping text subtly
+    // (still requires click to actually run audio)
+    if (soundToggle) soundToggle.textContent = 'Sound: Off (tap to enable)';
+  }
+})();
