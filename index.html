@@ -10,21 +10,44 @@
     <!-- Decorative “Homer-web” glyph layer -->
     <div class="glyph-layer" id="glyphLayer" aria-hidden="true"></div>
 
+    <!-- Hidden YouTube audio loop -->
+    <div class="yt-audio" aria-hidden="true">
+      <div id="ytPlayer"></div>
+    </div>
+
     <main class="app">
-      <header class="hero">
-        <div>
+      <header class="hero meme">
+        <div class="hero-left">
           <p class="eyebrow">Multi-Stopwatch</p>
-          <h1>Billy - the Billable Hours Partner</h1>
+
+          <h1 class="rainbow wobble">
+            Billy — the Billable Hours Partner 💸⏱️
+          </h1>
+
+          <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+              <span>🔥 WORK HARD • BILL HARD • TOUCH GRASS LATER 🔥</span>
+              <span>💥 WELCOME TO MY WEBSITE 💥</span>
+              <span>🚧 UNDER CONSTRUCTION 🚧</span>
+              <span>😈 RANDOM SYMBOLS 😈</span>
+              <span>🎄 JINGLE BILLS 🎄</span>
+              <span>🐶 BORK BORK 🐶</span>
+            </div>
+          </div>
+
           <p class="sub">
             Run as many stopwatches as you need, rename them, and set the time at any moment—even while running.
           </p>
+
+          <div class="construction-banner" aria-hidden="true">
+            <span>🚧 UNDER CONSTRUCTION 🚧</span>
+            <span>🚧 UNDER CONSTRUCTION 🚧</span>
+            <span>🚧 UNDER CONSTRUCTION 🚧</span>
+          </div>
         </div>
 
         <div class="hero-actions">
-          <button class="chip" id="soundToggle" type="button" aria-pressed="false">
-            Sound: Off
-          </button>
-          <button class="primary" id="addStopwatch">Add stopwatch</button>
+          <button class="primary chaos" id="addStopwatch">➕ Add stopwatch</button>
         </div>
       </header>
 
@@ -33,13 +56,7 @@
 
     <div class="modal" id="confirmModal" aria-hidden="true">
       <div class="modal-backdrop" data-close></div>
-      <div
-        class="modal-card"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="confirmTitle"
-        aria-describedby="confirmDesc"
-      >
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmDesc">
         <p class="modal-title" id="confirmTitle">Confirm action</p>
         <p class="modal-body" id="confirmDesc"></p>
         <div class="modal-actions">
