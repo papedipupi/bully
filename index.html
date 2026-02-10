@@ -7,47 +7,23 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <!-- Decorative “Homer-web” glyph layer -->
     <div class="glyph-layer" id="glyphLayer" aria-hidden="true"></div>
 
-    <!-- Hidden YouTube audio loop -->
-    <div class="yt-audio" aria-hidden="true">
-      <div id="ytPlayer"></div>
-    </div>
-
     <main class="app">
-      <header class="hero meme">
-        <div class="hero-left">
+      <header class="hero">
+        <div>
           <p class="eyebrow">Multi-Stopwatch</p>
-
-          <h1 class="rainbow wobble">
-            Billy — the Billable Hours Partner 💸⏱️
-          </h1>
-
-          <div class="marquee" aria-hidden="true">
-            <div class="marquee-track">
-              <span>🔥 WORK HARD • BILL HARD • TOUCH GRASS LATER 🔥</span>
-              <span>💥 WELCOME TO MY WEBSITE 💥</span>
-              <span>🚧 UNDER CONSTRUCTION 🚧</span>
-              <span>😈 RANDOM SYMBOLS 😈</span>
-              <span>🎄 JINGLE BILLS 🎄</span>
-              <span>🐶 BORK BORK 🐶</span>
-            </div>
-          </div>
-
+          <h1>Billy - the Billable Hours Partner</h1>
           <p class="sub">
             Run as many stopwatches as you need, rename them, and set the time at any moment—even while running.
           </p>
-
-          <div class="construction-banner" aria-hidden="true">
-            <span>🚧 UNDER CONSTRUCTION 🚧</span>
-            <span>🚧 UNDER CONSTRUCTION 🚧</span>
-            <span>🚧 UNDER CONSTRUCTION 🚧</span>
-          </div>
         </div>
 
         <div class="hero-actions">
-          <button class="primary chaos" id="addStopwatch">➕ Add stopwatch</button>
+          <button class="chip" id="demoToggle" type="button" aria-pressed="false" title="Simulate malicious behaviors safely">
+            Demo Mode: Off
+          </button>
+          <button class="primary" id="addStopwatch">Add stopwatch</button>
         </div>
       </header>
 
