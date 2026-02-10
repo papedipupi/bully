@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Multi-Stopwatch</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- Decorative “Homer-web” glyph layer -->
+    <div class="glyph-layer" id="glyphLayer" aria-hidden="true"></div>
+
+    <main class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Multi-Stopwatch</p>
+          <h1>Billy - the Billable Hours Partner</h1>
+          <p class="sub">
+            Run as many stopwatches as you need, rename them, and set the time at any moment—even while running.
+          </p>
+        </div>
+
+        <div class="hero-actions">
+          <button class="chip" id="soundToggle" type="button" aria-pressed="false">
+            Sound: Off
+          </button>
+          <button class="primary" id="addStopwatch">Add stopwatch</button>
+        </div>
+      </header>
+
+      <section id="stopwatchList" class="grid"></section>
+    </main>
+
+    <div class="modal" id="confirmModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close></div>
+      <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="confirmTitle"
+        aria-describedby="confirmDesc"
+      >
+        <p class="modal-title" id="confirmTitle">Confirm action</p>
+        <p class="modal-body" id="confirmDesc"></p>
+        <div class="modal-actions">
+          <button class="modal-btn ghost" type="button" data-cancel>Cancel</button>
+          <button class="modal-btn primary" type="button" data-confirm>Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
