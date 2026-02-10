@@ -372,3 +372,144 @@ h1 {
   width: max-content;
   max-width: 220px;
   display: none;
+  z-index: 5;
+}
+
+.label-row:hover .tooltip,
+.label-row.active .tooltip {
+  display: block;
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(31, 26, 36, 0.2);
+  backdrop-filter: blur(4px);
+}
+
+.modal-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+  border: 1px solid rgba(31, 26, 36, 0.12);
+  box-shadow: 0 18px 45px rgba(31, 26, 36, 0.18);
+  padding: 20px 22px;
+  width: min(360px, 90vw);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.modal-body {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-btn {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-btn.ghost {
+  background: transparent;
+  border-color: rgba(31, 26, 36, 0.18);
+  color: var(--muted);
+}
+
+.modal-btn.primary {
+  background: var(--baby-pink);
+  color: #7a2a4f;
+}
+
+.modal-btn.primary:hover {
+  filter: brightness(0.98);
+}
+
+.setter-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.setter-row input {
+  flex: 1 1 160px;
+  max-width: 220px;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(31, 26, 36, 0.16);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.setter-row input:focus {
+  outline: 2px solid rgba(162, 210, 255, 0.6);
+}
+
+.apply {
+  background: var(--baby-pink);
+  color: #7a2a4f;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.apply:hover {
+  filter: brightness(1.05);
+}
+
+.error {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #b2271b;
+  min-height: 1em;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 22px;
+  }
+}
