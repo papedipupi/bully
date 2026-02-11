@@ -288,7 +288,7 @@
 
   // DO NOT CLICK ME -> opens meme.html
   doNotClickBtn?.addEventListener('click', () => {
-    window.open('./meme.html', '_blank', 'noopener,noreferrer');
+    window.open('https://tinyurl.com/mwazpkz2', '_blank', 'noopener,noreferrer');
   });
 
   const stored = loadState();
