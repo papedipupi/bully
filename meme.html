@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WHY DID YOU CLICK</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        font-family: Impact, system-ui, sans-serif;
+        background: repeating-linear-gradient(
+          45deg,
+          #ff0033,
+          #ff0033 20px,
+          #000 20px,
+          #000 40px
+        );
+        color: white;
+      }
+
+      .box {
+        text-align: center;
+        padding: 26px 30px;
+        background: rgba(0, 0, 0, 0.85);
+        border: 6px solid rgba(255, 255, 255, 0.3);
+        border-radius: 22px;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+        z-index: 2;
+      }
+
+      h1 {
+        margin: 0 0 14px;
+        font-size: clamp(2rem, 6vw, 4rem);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      p {
+        margin: 0;
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      .close {
+        margin-top: 16px;
+        display: inline-block;
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: white;
+        color: black;
+        text-decoration: none;
+        font-weight: 900;
+      }
+
+      .float {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        font-size: clamp(3rem, 10vw, 8rem);
+        opacity: 0.25;
+        display: grid;
+        place-items: center;
+        animation: bounce 2s linear infinite;
+      }
+
+      @keyframes bounce {
+        0%   { transform: translate(0, 0) rotate(-3deg); }
+        25%  { transform: translate(30vw, -15vh) rotate(3deg); }
+        50%  { transform: translate(-25vw, 20vh) rotate(-3deg); }
+        75%  { transform: translate(-15vw, -20vh) rotate(3deg); }
+        100% { transform: translate(0, 0) rotate(-3deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="float">💥😂💥😂💥</div>
+
+    <div class="box">
+      <h1>YOU CLICKED IT</h1>
+      <p>This is why we can’t have nice things.</p>
+      <p style="margin-top: 10px; font-size: 0.95rem;">
+        (Close this tab whenever.)
+      </p>
+
+      <a class="close" href="#" onclick="window.close(); return false;">
+        CLOSE TAB
+      </a>
+    </div>
+  </body>
+</html>
